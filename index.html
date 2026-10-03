@@ -542,23 +542,25 @@ footer{max-width:1320px;margin:36px auto 0;color:var(--muted);font-size:13px;bor
 <p><b>Por que a GS difere da TAS</b>: o vento. Vento de proa tira, de cauda soma. Limites são sempre lidos na IAS, nunca na GS.</p>
 <div class="call"><span class="t">Baixa velocidade</span><p>No pairado e em translação lenta, o fluxo do rotor e o ângulo do vento relativo atrapalham o pitot: a IAS fica pouco confiável. Por isso o vento só é calculado com GS de 30 kt ou mais, e os marcadores de curva padrão somem abaixo de 60 kt de TAS.</p></div>
 <h3>A fita de velocidade</h3>
+<p>A fita é configurada na instalação conforme o Flight Manual. Para limites e marcações, a referência é sempre o FLM.</p>
 <ul>
-<li>Ponteiro fixo com número rolante; a fita se move. Aumentando a velocidade, a fita desce.</li>
-<li><b>Faixa colorida</b> à direita: verde = faixa normal; <b>vermelha com listras brancas (hachurada)</b> = acima da VNE sem potência; vermelha cheia = acima da VNE com potência.</li>
-<li><b>VNE variável</b>: o sistema recalcula as duas VNE automaticamente com a altitude, e as faixas sobem ou descem na fita sozinhas.</li>
-<li><b>Vetor de tendência</b> magenta: onde a IAS estará em 6 s com a aceleração atual. Some com velocidade constante ou sem dados.</li>
+<li><b>Ponteiro fixo com número rolante</b> (tambor no dígito das unidades); a fita se move. Aumentando a velocidade, a fita desce.</li>
+<li><b>Faixa de velocidade</b> (strip colorido à direita da fita): <b>verde</b> = faixa aprovada (normal); <b>vermelha</b> = acima da VNE.</li>
+<li><b>VNE calculada automaticamente</b> com a altitude: o limite entre o verde e o vermelho sobe ou desce na fita sozinho.</li>
+<li><b>VNE sem potência</b>: marcador <b>vermelho e branco hachurado</b> sobre a faixa, também recalculado com a altitude.</li>
+<li><b>Vetor de tendência</b> magenta, à direita da fita: onde a IAS estará em 6 s com a aceleração atual. Some com velocidade constante ou se faltar algum dado para o cálculo.</li>
 <li><b>TAS</b> e <b>GS</b> em campos numéricos abaixo da fita.</li>
 </ul>
 <h4>Aviso de excesso de velocidade</h4>
-<ul><li>Se a <b>tendência</b> entra na faixa vermelha, o número da velocidade fica <b>amarelo</b>: aviso antecipado.</li><li>Se a <b>IAS</b> passa da VNE, o fundo do indicador fica <b>vermelho</b>.</li></ul>
+<ul><li>Se o <b>vetor de tendência</b> entra na faixa acima da VNE, o <b>ponteiro fica amarelo</b>: aviso antecipado.</li><li>Se a <b>IAS</b> passa da VNE, o <b>ponteiro fica vermelho</b>.</li></ul>
 <h4>Marcadores de referência</h4>
-<p>Para helicóptero, os marcadores ciano disponíveis são Glide e Vy (no EC130 T2 aparece também Vr). Liga e ajusta em Menu → Airspeeds. O número ao lado mostra a diferença para o valor de fábrica; Restore All Defaults volta tudo. Após desligar e ligar, voltam aos valores da instalação.</p>
+<p>Três marcadores ciano, fora da fita, à direita: <b>G</b> (Glide), <b>R</b> (Vr) e <b>Y</b> (Vy). Ajuste em <b>Menu → Airspeeds</b>: cada um tem a tecla de liga/desliga e a tecla do valor; <b>Restore All Defaults</b> volta aos padrões. Padrões: Vy 65 kt, Vr e Glide 0 kt (marcador em 0 não aparece). Os valores <b>não ficam gravados no perfil do piloto</b>.</p>
 </div>
 <div class="call h130"><span class="t">No EC130 T2</span>
-<p><b>VNE com potência</b>: 155 kt menos 3 kt por 1.000 ft. <b>VNE sem potência</b> (autorrotação): 30 kt a menos, 125 kt menos 3 kt por 1.000 ft; é a faixa hachurada. Exemplo: a 5.000 ft, 140 kt com potência e 110 kt sem potência.</p>
+<p><b>VNE com potência</b>: 155 kt menos 3 kt por 1.000 ft. <b>VNE sem potência</b> (autorrotação): 30 kt a menos, 125 kt menos 3 kt por 1.000 ft; é o marcador hachurado. Exemplo: a 5.000 ft, 140 kt com potência e 110 kt sem potência.</p>
 <p>Com a massa sem combustível e o CG na área de VNE reduzida do gráfico de CG, a VNE reduzida vale o voo todo. VNE definida com portas fechadas; sem portas, máximo 100 kt ou a VNE, o que for menor. Referência final: placas no montante da cabine e FLM.</p>
 <p><b>Vy não é calculado pelo sistema</b>: o marcador vem em 65 kt; Vr e Glide em 0. O piloto obtém Vy na tabela do FLM para a altitude e ajusta em Menu → Airspeeds. Os marcadores não ficam no perfil.</p></div>
-<div class="call conf"><span class="t">Confirmar</span><p>Tabela de Vy por altitude do FLM do EC130 T2 (não consta do material usado aqui) e se a altitude de referência da VNE na placa é altitude-pressão ou densidade. O desenho exato da faixa hachurada na tela do EC130 T2.</p></div>
+<div class="call conf"><span class="t">Confirmar</span><p>Tabela de Vy por altitude do FLM do EC130 T2 (não consta do material usado aqui) e se a altitude de referência da VNE na placa é altitude-pressão ou densidade. Estado de fábrica das teclas liga/desliga dos marcadores na aeronave (na figura do manual, Glide aparece ligado e Vr e Vy desligados).</p></div>
 <div class="call warn"><span class="t">Falha de dados de ar</span><p>Se a tela perde temperatura ou altitude-pressão, aparece o aviso <b>"air data input failure. VNE is uncorrected"</b>: a VNE mostrada deixa de ser corrigida. Use a placa de limitações de velocidade.</p></div>
 </div>
 
@@ -574,16 +576,21 @@ footer{max-width:1320px;margin:36px auto 0;color:var(--muted);font-size:13px;bor
 <div class="main">
 <div>
 <div class="bezel"><svg id="spdS" viewBox="0 0 400 420" role="img" aria-label="Fita de velocidade simulada"></svg></div>
-<div class="tags"><span class="tag"><b>Ponteiro</b> IAS atual</span><span class="tag"><b class="c5">Magenta</b> tendência em 6 s</span><span class="tag"><b class="c1">Ciano</b> marcador Vy</span></div>
+<div class="tags"><span class="tag"><b>Ponteiro</b> IAS atual</span><span class="tag"><b class="c5">Magenta</b> tendência em 6 s</span><span class="tag"><b class="c1">Ciano</b> marcadores G, R e Y</span><span class="tag"><b>Ponteiro amarelo/vermelho</b> excesso de velocidade</span></div>
 </div>
 <div class="ctrl">
 <div><div class="label" style="margin-bottom:8px">Cenários</div>
-<div class="btns" id="sScen"><button type="button" data-s="cruz">Cruzeiro</button><button type="button" data-s="acel">Acelerando forte</button><button type="button" data-s="auto">Faixa hachurada</button><button type="button" data-s="vne">Acima da VNE</button><button type="button" data-s="alto">Voo alto</button><button type="button" data-s="quente">Dia quente</button><button type="button" data-s="proa">Vento de proa</button><button type="button" data-s="cauda">Vento de cauda</button></div></div>
+<div class="btns" id="sScen"><button type="button" data-s="cruz">Cruzeiro</button><button type="button" data-s="acel">Acelerando forte</button><button type="button" data-s="auto">Acima da VNE sem potência</button><button type="button" data-s="vne">Acima da VNE</button><button type="button" data-s="alto">Voo alto</button><button type="button" data-s="quente">Dia quente</button><button type="button" data-s="proa">Vento de proa</button><button type="button" data-s="cauda">Vento de cauda</button></div></div>
 <div class="row"><label class="label" for="sIas">IAS</label><input type="range" id="sIas" min="20" max="170" step="1" value="100"><span class="val" id="sIasO"></span></div>
 <div class="row"><label class="label" for="sAcc">Aceleração</label><input type="range" id="sAcc" min="-30" max="30" step="1" value="0"><span class="val" id="sAccO"></span></div>
 <div class="row"><label class="label" for="sAlt">Altitude</label><input type="range" id="sAlt" min="0" max="12000" step="500" value="1000"><span class="val" id="sAltO"></span></div>
 <div class="row"><label class="label" for="sIsa">Temp. vs ISA</label><input type="range" id="sIsa" min="-20" max="30" step="1" value="0"><span class="val" id="sIsaO"></span></div>
 <div class="row"><label class="label" for="sWind">Vento na proa</label><input type="range" id="sWind" min="-40" max="40" step="1" value="0"><span class="val" id="sWindO"></span></div>
+<div><div class="label" style="margin:4px 0 8px">Menu → Airspeeds (marcadores; 0 = não aparece)</div></div>
+<div class="row"><label class="label" for="sVy">Vy</label><input type="range" id="sVy" min="0" max="90" step="1" value="65"><span class="val" id="sVyO"></span></div>
+<div class="row"><label class="label" for="sVr">Vr</label><input type="range" id="sVr" min="0" max="90" step="1" value="0"><span class="val" id="sVrO"></span></div>
+<div class="row"><label class="label" for="sGl">Glide</label><input type="range" id="sGl" min="0" max="90" step="1" value="0"><span class="val" id="sGlO"></span></div>
+<div class="btns"><button type="button" id="sRst">Restore All Defaults</button></div>
 <div class="readout" aria-live="polite">
 <p><span class="k c1">IAS e VNE</span><span id="sM1"></span></p>
 <p><span class="k c5">Tendência</span><span id="sM2"></span></p>
@@ -1408,23 +1415,36 @@ function adi(o){
 
 /* ---------- Fita de velocidade ---------- */
 function speedTape(o){
+ /* Fita de IAS do G500H TXi (EC130 T2): faixa verde até a VNE e vermelha acima, marcador hachurado na VNE sem potência,
+    tendência magenta de 6 s, marcadores ciano Glide/Vr/Vy fora da fita, ponteiro com tambor rolante
+    (amarelo se a tendência entra acima da VNE, vermelho com IAS acima da VNE). */
  var x=o.x,y=o.y,w=o.w,hh=o.h,px=4,cy=y+hh/2,ias=o.ias,s='',id=o.id;
  function fields(){if(o.tas===undefined)return '';return tx(x,y+hh+24,'TAS',15,'#9DB0C3')+tx(x+w,y+hh+24,o.tasFail?'– – –':r(o.tas)+' kt',17,'#FFF','end')+tx(x,y+hh+48,'GS',15,'#9DB0C3')+tx(x+w,y+hh+48,o.gsFail?'– – –':r(o.gs)+' kt',17,'#FFF','end');}
  if(o.fail)return failX(x,y,w,hh,RED)+fields();
  function yv(v){return cy-(v-ias)*px;}
- s+='<defs><clipPath id="'+id+'c"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'"/></clipPath><pattern id="'+id+'bp" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#E5484D"/><rect width="3.5" height="8" fill="#FFF"/></pattern></defs><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" fill="#0E1520" fill-opacity="0.8" stroke="#3A4A60"/><g clip-path="url(#'+id+'c)">';
- var vt=Math.max(o.vne,20),vo=o.vneOff?Math.max(Math.min(o.vneOff,vt),20):vt;s+='<rect x="'+(x+w-6)+'" y="'+yv(vo).toFixed(1)+'" width="6" height="'+Math.max(0,yv(20)-yv(vo)).toFixed(1)+'" fill="#3BD16F"/>';
- if(vo<vt)s+='<rect x="'+(x+w-9)+'" y="'+yv(vt).toFixed(1)+'" width="9" height="'+(yv(vo)-yv(vt)).toFixed(1)+'" fill="url(#'+id+'bp)"/>';
+ s+='<defs><clipPath id="'+id+'c"><rect x="'+x+'" y="'+y+'" width="'+(w+44)+'" height="'+hh+'"/></clipPath><clipPath id="'+id+'d"><rect x="'+(x+w-30-19)+'" y="'+(cy-31)+'" width="19" height="62"/></clipPath><pattern id="'+id+'bp" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#E5484D"/><rect width="3.2" height="7" fill="#FFF"/></pattern></defs>';
+ s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" fill="#0B1118" fill-opacity="0.45" stroke="#3A4A60"/><g clip-path="url(#'+id+'c)">';
+ var vt=Math.max(o.vne,20);
+ /* faixa: verde (faixa aprovada) até a VNE, vermelha acima */
+ s+='<rect x="'+(x+w-6)+'" y="'+yv(vt).toFixed(1)+'" width="6" height="'+Math.max(0,yv(20)-yv(vt)).toFixed(1)+'" fill="#3BD16F"/>';
  s+='<rect x="'+(x+w-6)+'" y="'+(y-10)+'" width="6" height="'+Math.max(0,yv(vt)-y+10).toFixed(1)+'" fill="#E5484D"/>';
  var v0=Math.floor((ias-hh/2/px)/5)*5;for(var v=v0;v<=ias+hh/2/px+5;v+=5){if(v<20)continue;var yy=yv(v);
   if(v%10===0)s+='<line x1="'+(x+w-22)+'" x2="'+(x+w-8)+'" y1="'+yy.toFixed(1)+'" y2="'+yy.toFixed(1)+'" stroke="#FFF" stroke-width="2"/>'+tx(x+w-27,yy+6,v,17,'#FFF','end');
   else s+='<line x1="'+(x+w-15)+'" x2="'+(x+w-8)+'" y1="'+yy.toFixed(1)+'" y2="'+yy.toFixed(1)+'" stroke="#FFF" stroke-width="2"/>';}
- if(o.vy){var yy2=yv(o.vy);s+='<rect x="'+(x+w-20)+'" y="'+(yy2-9).toFixed(1)+'" width="13" height="18" fill="#5CC8E8"/>'+tx(x+w-13.5,yy2+5,'Y',13,'#0B1118','middle');}
- if(Math.abs(o.trend)>=1){var ty=cy-o.trend*px;s+='<line x1="'+(x+w-11)+'" x2="'+(x+w-11)+'" y1="'+cy+'" y2="'+ty.toFixed(1)+'" stroke="#E58AD6" stroke-width="5"/>';}
+ /* VNE sem potência: marcador hachurado vermelho e branco */
+ if(o.vneOff&&o.vneOff<vt){var yo=yv(o.vneOff);s+='<rect x="'+(x+w-9)+'" y="'+(yo-5).toFixed(1)+'" width="26" height="10" fill="url(#'+id+'bp)" stroke="#FFF" stroke-width="0.8"/>';}
+ /* tendência (6 s): à direita da faixa; some com velocidade constante */
+ if(Math.abs(o.trend)>=1){var ty=cy-o.trend*px;s+='<rect x="'+(x+w+2)+'" y="'+Math.min(cy,ty).toFixed(1)+'" width="5" height="'+Math.abs(ty-cy).toFixed(1)+'" fill="#E040C8"/>';}
+ /* marcadores ciano fora da fita: Glide, Vr, Vy (valor 0 = não aparece) */
+ [['G',o.glide],['R',o.vr],['Y',o.vy]].forEach(function(m){if(!m[1]||m[1]<=0)return;var my=yv(m[1]),mx=x+w+8;
+  s+='<path d="M'+mx+' '+my.toFixed(1)+' l9 -11 h19 v22 h-19 z" fill="#232A33" stroke="#8A96A3" stroke-width="1.2"/>'+tx(mx+18.5,my+5.5,m[0],15,'#38D3F5','middle',' font-weight="700"');});
  s+='</g>';
- var over=ias>o.vne,warn=!over&&(ias+o.trend>o.vne);
- s+='<path d="M'+(x+2)+' '+(cy-20)+' H'+(x+w-30)+' L'+(x+w-18)+' '+cy+' L'+(x+w-30)+' '+(cy+20)+' H'+(x+2)+' Z" fill="'+(over?'#D92D20':'#000')+'" stroke="#FFF" stroke-width="2"/>';
- s+=tx(x+w-36,cy+9,r(ias),26,warn?'#F2D21B':'#FFFFFF','end');
+ /* ponteiro com tambor rolante no dígito das unidades */
+ var over=ias>o.vne,warn=!over&&(ias+o.trend>o.vne),fill=over?'#D92D20':(warn?'#F2D21B':'#000'),fg=warn?'#000':'#FFF';
+ var b=x+w-30,a=b-19,iv=Math.max(0,ias),tens=Math.floor(iv/10),u=iv-tens*10,d=Math.floor(u),fr=u-d,sp=36;
+ s+='<path d="M'+(x+2)+' '+(cy-20)+' H'+a+' V'+(cy-32)+' H'+b+' V'+(cy-10)+' L'+(b+12)+' '+cy+' L'+b+' '+(cy+10)+' V'+(cy+32)+' H'+a+' V'+(cy+20)+' H'+(x+2)+' Z" fill="'+fill+'" stroke="#FFF" stroke-width="2"/>';
+ if(tens>0)s+=tx(a+1,cy+10,tens,28,fg,'end');
+ s+='<g clip-path="url(#'+id+'d)">';for(var k=-2;k<=2;k++){var dg=((d+k)%10+10)%10;s+=tx(a+9.5,cy+10-k*sp+fr*sp,dg,28,fg,'middle');}s+='</g>';
  return s+fields();}
 
 /* ---------- Fita de altitude, RA, mínimos ---------- */
@@ -1710,39 +1730,40 @@ INIT.atitude=function(){
    ========================================================= */
 function vneOf(alt){return Math.round(155-3*Math.max(0,alt)/1000);}
 function vneOffOf(alt){return Math.round(125-3*Math.max(0,alt)/1000);}
-var S={ias:100,acc:0,alt:1000,isa:0,wind:0};
+var S={ias:100,acc:0,alt:1000,isa:0,wind:0},SM={vy:65,vr:0,gl:0};
 function tasOf(ias,alt,isa){return ias*(1+0.02*alt/1000)*(1+0.002*(isa||0));}
 function rS(){
  var vne=vneOf(S.alt),vof=vneOffOf(S.alt),tas=tasOf(S.ias,S.alt,S.isa),gs=Math.max(0,tas-S.wind),trend=S.acc/10*6;
  $('sIas').value=S.ias;$('sAcc').value=S.acc;$('sAlt').value=S.alt;$('sWind').value=S.wind;$('sIsa').value=S.isa;
- $('spdS').innerHTML='<rect width="400" height="420" fill="#16314F"/>'+speedTape({id:'sS',x:120,y:30,w:160,h:300,ias:S.ias,trend:trend,vne:vne,vneOff:vof,vy:65,tas:tas,gs:gs});
+ $('spdS').innerHTML='<rect width="400" height="420" fill="#16314F"/>'+speedTape({id:'sS',x:120,y:30,w:160,h:300,ias:S.ias,trend:trend,vne:vne,vneOff:vof,vy:SM.vy,vr:SM.vr,glide:SM.gl,tas:tas,gs:gs});
+ $('sVy').value=SM.vy;$('sVr').value=SM.vr;$('sGl').value=SM.gl;['Vy','Vr','Gl'].forEach(function(k){var v=SM[k.toLowerCase()];$('s'+k+'O').textContent=v?v+' kt':'0 (oculto)';});
  $('sIasO').textContent=S.ias+' kt';$('sAccO').textContent=sgn(S.acc/10,'0',' kt/s');$('sAltO').textContent=fmt(S.alt)+' ft';$('sIsaO').textContent=(S.isa>0?'ISA +':'ISA ')+(S.isa===0?'':S.isa)+(S.isa===0?'':'°C');$('sWindO').textContent=S.wind===0?'0 kt':(S.wind>0?'proa ':'cauda ')+Math.abs(S.wind)+' kt';
- var st=S.ias>vne?'acima da VNE: fundo do indicador vermelho.':((S.ias+trend>vne)?'abaixo da VNE, mas a tendência entra na faixa vermelha: número amarelo.':'dentro da faixa normal.');
- $('sM1').textContent=' '+S.ias+' kt, '+st+' A '+fmt(S.alt)+' ft: VNE com potência '+vne+' kt (155 − 3/1.000 ft), sem potência '+vof+' kt (faixa hachurada).'+(S.ias>vof&&S.ias<=vne?' Em autorrotação você estaria acima da VNE sem potência.':'');
+ var st=S.ias>vne?'acima da VNE: ponteiro vermelho.':((S.ias+trend>vne)?'abaixo da VNE, mas a tendência entra na faixa vermelha: ponteiro amarelo.':'dentro da faixa normal.');
+ $('sM1').textContent=' '+S.ias+' kt, '+st+' A '+fmt(S.alt)+' ft: VNE com potência '+vne+' kt (155 − 3/1.000 ft), sem potência '+vof+' kt (marcador hachurado).'+(S.ias>vof&&S.ias<=vne?' Em autorrotação você estaria acima da VNE sem potência.':'');
  $('sM2').textContent=Math.abs(trend)<1?' Velocidade constante: sem vetor.':' Em 6 s a IAS estará em cerca de '+r(S.ias+trend)+' kt ('+(trend>0?'acelerando':'desacelerando')+').';
  $('sM3').textContent=' '+r(tas)+' kt. '+(S.alt<500&&S.isa===0?'Perto do nível do mar em dia padrão, quase igual à IAS.':'Maior que a IAS: ar menos denso pela altitude'+(S.isa>0?' e pelo calor':'')+'.');
  $('sM4').textContent=' '+r(gs)+' kt. '+(S.wind===0?'Sem vento, igual à TAS.':(S.wind>0?'Vento de proa tira '+S.wind+' kt.':'Vento de cauda soma '+Math.abs(S.wind)+' kt.'))+' Limites são lidos na IAS, nunca na GS.';}
 var SS={cruz:[100,0,1000,0,0],auto:[118,0,3000,0,0],acel:[120,25,1000,0,0],vne:[158,0,1000,0,0],alto:[110,0,10000,0,0],quente:[110,0,6000,25,0],proa:[100,0,1000,0,30],cauda:[100,0,1000,0,-30]};
 function setS(v){S={ias:v[0],acc:v[1],alt:v[2],isa:v[3],wind:v[4]};rS();}
 INIT.velocidade=function(){
- var sv=$('spdAnno');sv.innerHTML='<rect width="400" height="420" fill="#16314F"/>'+speedTape({id:'sN',x:120,y:30,w:160,h:300,ias:98,trend:8,vne:vneOf(8000),vneOff:vneOffOf(8000),vy:65,tas:114,gs:108});
+ var sv=$('spdAnno');sv.innerHTML='<rect width="400" height="420" fill="#16314F"/>'+speedTape({id:'sN',x:120,y:30,w:160,h:300,ias:98,trend:8,vne:vneOf(8000),vneOff:vneOffOf(8000),vy:65,vr:70,glide:75,tas:114,gs:108});
  anno(sv,$('spdList'),[
-  {x:96,y:180,t:'Ponteiro e número rolante',d:'IAS atual. Fundo vermelho acima da VNE; número amarelo se a tendência entra na faixa vermelha.'},
+  {x:96,y:180,t:'Ponteiro e número rolante',d:'IAS atual; o dígito das unidades rola num tambor. Ponteiro amarelo se a tendência entra acima da VNE; vermelho com a IAS acima da VNE.'},
   {x:150,y:244,t:'Fita móvel',d:'Números a cada 10 kt, marcas a cada 5 kt. Acelerando, a fita desce.'},
-  {x:304,y:250,t:'Faixa verde',d:'Faixa normal, até a VNE sem potência.'},
-  {x:304,y:96,t:'Faixa hachurada (VNE sem potência)',d:'Vermelha com listras brancas: da VNE sem potência (125 kt − 3 kt/1.000 ft; aqui 101 kt) até a VNE com potência. Calculada sozinha pela altitude.'},
-  {x:304,y:44,t:'Faixa vermelha (VNE com potência)',d:'Acima de 155 kt − 3 kt/1.000 ft (aqui 131 kt a 8.000 ft).'},
-  {x:304,y:150,t:'Vetor de tendência',d:'Magenta: IAS prevista em 6 s (aqui, cerca de 106 kt).'},
-  {x:236,y:312,t:'Marcador Vy',d:'Ciano. Não é calculado: vem em 65 kt e o piloto ajusta pela tabela do FLM (Menu → Airspeeds).'},
+  {x:304,y:236,t:'Faixa verde',d:'Faixa aprovada (normal), até a VNE.'},
+  {x:330,y:172,t:'Marcador hachurado (VNE sem potência)',d:'Vermelha com listras brancas: da VNE sem potência (125 kt − 3 kt/1.000 ft; aqui 101 kt) até a VNE com potência. Calculada sozinha pela altitude.'},
+  {x:304,y:44,t:'Faixa vermelha (acima da VNE)',d:'VNE calculada pela altitude: 155 kt − 3 kt/1.000 ft (aqui 131 kt a 8.000 ft).'},
+  {x:302,y:136,t:'Vetor de tendência',d:'Magenta: IAS prevista em 6 s (aqui, cerca de 106 kt).'},
+  {x:346,y:292,t:'Marcadores G, R e Y',d:'Glide, Vr e Vy em ciano, fora da fita. Vy vem em 65 kt e o piloto ajusta pela tabela do FLM; Vr e Glide vêm em 0 (ocultos). Aqui ajustados em 75 e 70 kt para mostrar. Menu → Airspeeds.'},
   {x:96,y:350,t:'TAS',d:'Velocidade verdadeira calculada pelo ADC com altitude-pressão e temperatura.'},
   {x:96,y:374,t:'GS',d:'Velocidade no solo, do GPS.'}]);
- bind('sIas',function(){S.ias=+this.value;rS();});bind('sAcc',function(){S.acc=+this.value;rS();});bind('sAlt',function(){S.alt=+this.value;rS();});bind('sIsa',function(){S.isa=+this.value;rS();});bind('sWind',function(){S.wind=+this.value;rS();});
+ bind('sIas',function(){S.ias=+this.value;rS();});bind('sAcc',function(){S.acc=+this.value;rS();});bind('sAlt',function(){S.alt=+this.value;rS();});bind('sIsa',function(){S.isa=+this.value;rS();});bind('sWind',function(){S.wind=+this.value;rS();});bind('sVy',function(){SM.vy=+this.value;rS();});bind('sVr',function(){SM.vr=+this.value;rS();});bind('sGl',function(){SM.gl=+this.value;rS();});$('sRst').addEventListener('click',function(){SM={vy:65,vr:0,gl:0};rS();});
  qa('#sScen button').forEach(function(x){x.addEventListener('click',function(){setS(SS[x.dataset.s]);});});
  rS();
  quiz(document.querySelector('[data-quiz=velocidade]'),[
-  {s:[146,15,1000,0,0],q:'Por que o número da velocidade está amarelo?',o:['A tendência entra na faixa acima da VNE','A IAS já passou da VNE','Falha do ADC'],e:'Amarelo é aviso antecipado; fundo vermelho é VNE ultrapassada.'},
-  {s:[118,0,3000,0,0],q:'A 3.000 ft, IAS 118 kt dentro da faixa hachurada. O que ela significa?',o:['Acima da VNE sem potência (116 kt): numa pane de motor, reduzir para a autorrotação','Acima da VNE com potência','Faixa normal'],e:'Hachurada = entre a VNE sem potência e a com potência.'},
-  {s:[158,0,1000,0,0],q:'Fundo do indicador vermelho. O que significa?',o:['IAS acima da VNE','Tendência para a VNE','Falha de pitot']},
+  {s:[146,15,1000,0,0],q:'Por que o ponteiro da velocidade está amarelo?',o:['A tendência entra na faixa acima da VNE','A IAS já passou da VNE','Falha do ADC'],e:'Amarelo é aviso antecipado; ponteiro vermelho é VNE ultrapassada.'},
+  {s:[118,0,3000,0,0],q:'A 3.000 ft, IAS 118 kt, acima do marcador hachurado. O que isso significa?',o:['Acima da VNE sem potência (116 kt): numa pane de motor, reduzir para a autorrotação','Acima da VNE com potência','Faixa normal'],e:'O marcador hachurado é a VNE sem potência; a faixa vermelha começa na VNE com potência.'},
+  {s:[158,0,1000,0,0],q:'Ponteiro vermelho. O que significa?',o:['IAS acima da VNE','Tendência para a VNE','Falha de pitot']},
   {s:[110,0,10000,0,0],q:'IAS 110 kt a 10.000 ft. A TAS é:',o:['Maior que 110 kt','Igual a 110 kt','Menor que 110 kt'],e:'Ar menos denso: mais velocidade real para a mesma IAS.'},
   {s:[100,0,1000,0,-30],q:'Com vento de cauda forte, qual velocidade usar para respeitar limites?',o:['IAS','GS','TAS']},
   {s:[100,-20,1000,0,0],q:'O vetor magenta aponta para baixo. Em 6 s a IAS estará:',o:['Menor','Maior','Igual']}
@@ -2317,7 +2338,7 @@ function holdBtn(id,fn){var b=$(id),t1=null,t2=null,n=0;
  b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();fn(1);}});}
 var EMID='';
 var EFOC=['hdg','alt','crs','baro'],EPG=['map','terrain','charts'],ERNG=[1,2,3,5,10,20];
-var EMDEF={on:true,power:false,full:false,ctl:null,focus:0,bug:45,sel:null,crsV:180,cdi:'GPS1',baro:1013,std:false,preset:1013,qnh:1016,tRun:false,tSec:0,svt:false,vy:false,vr:false,glide:false,att:false,hsimap:false,rp:false,inh:false,mins:'Off',wind:true,menu:null,page:'map',prev:'map',mmenu:false,ri:3,topo:true,last:0,msg:'',flags:{}};
+var EMDEF={on:true,power:false,full:false,ctl:null,focus:0,bug:45,sel:null,crsV:180,cdi:'GPS1',baro:1013,std:false,preset:1013,qnh:1016,tRun:false,tSec:0,svt:false,vy:false,vr:false,glide:true,spd:{glide:0,vr:0,vy:65},kp:null,kb:'',att:false,hsimap:false,rp:false,inh:false,mins:'Off',wind:true,menu:null,page:'map',prev:'map',mmenu:false,ri:3,topo:true,last:0,msg:'',flags:{}};
 var EM=JSON.parse(JSON.stringify(EMDEF)),EMHDG=87,EMTRUE=2500,EMSKY=null,EMIMG={},EMTER=null,EMDONE={};
 function emAlt(){return EMTRUE+((EM.std?1013:EM.baro)-EM.qnh)*28;}
 function emGpsCrs(){return 92;}
@@ -2327,7 +2348,7 @@ function emPfd(w){
  var h=560,cx=w/2,s='',ind=emAlt(),foc=EFOC[EM.focus],gps=EM.cdi.indexOf('GPS')===0,crsVal=gps?emGpsCrs():EM.crsV;
  s+=adi({id:'emA'+EMID+w,w:w,h:h,cx:cx,cy:190,K:4.2,win:18,R:136,pw:40,bank:0,pitch:-2,ball:0,ptr:'fixed',std:stdBank(99),svt:EM.svt,sky:EM.svt?EMSKY:null,hdg:EMHDG,fpm:EM.svt,dx:2,gam:-2.4});
  var sx=cx-216,ax=cx+122;
- s+=speedTape({id:'emS'+EMID+w,x:sx,y:60,w:86,h:220,ias:95,trend:0,vne:vneOf(2500),vneOff:vneOffOf(2500),vy:EM.vy?65:0,tas:99,gs:92});
+ s+=speedTape({id:'emS'+EMID+w,x:sx,y:60,w:86,h:220,ias:95,trend:0,vne:vneOf(2500),vneOff:vneOffOf(2500),vy:EM.vy?EM.spd.vy:0,vr:EM.vr?EM.spd.vr:0,glide:EM.glide?EM.spd.glide:0,tas:99,gs:92});
  s+=altTape({id:'emH'+EMID+w,x:ax,y:60,w:88,h:220,alt:ind,trend:0,baro:EM.std?'STD':EM.baro+' hPa',sel:EM.sel===null?-2000:EM.sel,mins:EM.mins==='BARO'?{v:1200,col:'#5CC8E8',lbl:'BARO'}:null,ra:null});
  s+='<g data-a="f:alt" style="cursor:pointer"><rect x="'+ax+'" y="22" width="88" height="30" fill="none" stroke="'+(foc==='alt'?'#5CC8E8':'transparent')+'" stroke-width="3"/></g>';
  s+='<g data-a="f:baro" style="cursor:pointer"><rect x="'+ax+'" y="288" width="88" height="30" fill="'+(EM.std?'transparent':'transparent')+'" stroke="'+(foc==='baro'?'#5CC8E8':'transparent')+'" stroke-width="3"/></g>';
@@ -2363,11 +2384,24 @@ function emPfd(w){
  if(EM.menu){s+='<rect x="8" y="56" width="'+(w-16)+'" height="450" rx="8" fill="#0D141C" fill-opacity="0.96" stroke="#55667A"/>';
   if(EM.menu==='root'){s+=tx(22,82,'PFD Menu',14,'#C8D2DC');
    ['PFD Setup','Airspeeds','Minimums','ATT SYNC','HSI Setup','Terrain SVT','Test'].forEach(function(n,i){var c=i%3,r2=Math.floor(i/3),bw=(w-64)/3;s+=emKey(24+c*(bw+8),96+r2*76,bw,64,'m:'+n,n,n==='ATT SYNC'?(EM.att?'On':'Off'):undefined,n==='ATT SYNC'&&EM.att);});}
+  else if(EM.menu==='Airspeeds')s+=emAirspeeds(w);
   else{var L=emMenuList(EM.menu);s+=tx(22,82,EM.menu,14,'#C8D2DC');L.forEach(function(it,i){s+=emKey(24,96+i*48,w-48,40,it[0],it[1],undefined,it[2]);if(it[3]!==undefined)s+=tx(w-36,121+i*48,it[3],13,it[2]?'#5CC8E8':'#9DB0C3','end');});}}
  return s;}
+/* PFD Menu → Airspeeds: tecla liga/desliga + tecla de valor para Glide, VR e VY; teclado numérico ao tocar no valor */
+function emTog(x,y,w,h,act,label,on){return '<g data-a="'+act+'" style="cursor:pointer"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="5" fill="#1C2633" stroke="#55667A" stroke-width="1.5"/>'+tx(x+w/2,y+h/2,label,16,'#E7EDF4','middle')+'<rect x="'+(x+w/2-26)+'" y="'+(y+h-14)+'" width="52" height="6" rx="3" fill="'+(on?'#3BD16F':'#4A5563')+'"/></g>';}
+function emVal(x,y,w,h,act,val,foc){return '<g data-a="'+act+'" style="cursor:pointer"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="5" fill="#1C2633" stroke="'+(foc?'#5CC8E8':'#55667A')+'" stroke-width="'+(foc?3:1.5)+'"/>'+tx(x+w/2,y+h/2+8,val,22,'#5CC8E8','middle')+'</g>';}
+function emAirspeeds(w){
+ var s=tx(22,82,'Airspeeds',14,'#C8D2DC'),bw=Math.min(118,(w-72)/4),g=8,x0=24;
+ function pair(x,y,id,lbl){var foc=EM.kp===id,val=foc?(EM.kb===''?'_':EM.kb)+' KT':EM.spd[id]+' KT';return emTog(x,y,bw,62,'t:'+id,lbl,EM[id])+emVal(x+bw+4,y,bw,62,'v:'+id,val,foc);}
+ s+=pair(x0,96,'glide','Glide')+pair(x0+2*bw+g+12,96,'vr','VR')+pair(x0,166,'vy','VY');
+ if(EM.kp){var kx=x0,ky=244,kw=Math.min(64,(w-72)/6),kh=40;
+  s+=tx(kx,ky-8,'Novo valor de '+{glide:'Glide',vr:'VR',vy:'VY'}[EM.kp]+' (kt): teclado ou botão interno esquerdo',11,'#9DB0C3');
+  ['1','2','3','4','5','6','7','8','9','⌫','0','Enter'].forEach(function(d,i){var c=i%3,r2=Math.floor(i/3);s+=emKey(kx+c*(kw+6),ky+r2*(kh+6),kw,kh,'kp:'+d,d);});
+  s+=emKey(kx+3*(kw+6)+10,ky,kw*1.6,kh,'kp:Cancel','Cancel');}
+ s+=emKey(x0+2*bw+g+12,430,bw*2+4,52,'t:restore','Restore All Defaults');
+ return s;}
 function emMenuList(m){
- if(m==='Airspeeds')return [['t:glide','Glide',EM.glide,EM.glide?'On':'Off'],['t:vr','VR',EM.vr,EM.vr?'On':'Off'],['t:vy','VY (65 kt)',EM.vy,EM.vy?'On':'Off'],['t:restore','Restore All Defaults',false,'']];
- if(m==='Minimums')return ['Off','BARO','TEMP COMP','RAD ALT'].map(function(n){return ['r:'+n,n,EM.mins===n,EM.mins===n?'●':''];});
+  if(m==='Minimums')return ['Off','BARO','TEMP COMP','RAD ALT'].map(function(n){return ['r:'+n,n,EM.mins===n,EM.mins===n?'●':''];});
  if(m==='HSI Setup')return [['t:hsimap','HSI Map',EM.hsimap,EM.hsimap?'On':'Off'],['x:','Overlays (TOPO, Terrain, Obstacles & Wires)',false,'›'],['x:','Bearing Pointers',false,'›']];
  if(m==='Terrain SVT')return [['t:svt','Synthetic Terrain',EM.svt,EM.svt?'On':'Off'],['x:','Settings (Horizon Headings, Airport Signs)',false,'›'],['t:inh','HTERRAIN INHIBIT',EM.inh,EM.inh?'On':'Off'],['t:rp','RP MODE',EM.rp,EM.rp?'On':'Off']];
  if(m==='PFD Setup')return [['x:','Clock/Timer',false,'›'],['x:','TEMP/DALT',false,'›'],['x:','Menu Timeout',false,'›'],['x:','CDI/VDI Preview',false,'On'],['t:wind','Wind Field',EM.wind,EM.wind?'On':'Off'],['x:','LOC CDI Prompting',false,'›']];
@@ -2423,7 +2457,7 @@ function emAct(a){
  if(!EM.on&&a!=='k:power')return;
  if(k==='k'){
   if(v==='power'){if(!EM.on){EM.on=true;emSay('Tela ligada. Ao ligar, o AHRS alinha: manter o helicóptero nivelado.');}else{EM.power=!EM.power;emSay(EM.power?'Um toque em Power abre o menu. Segurar 4 s desliga sem confirmação. Nunca desligar em voo.':'Menu fechado.');}}
-  if(v==='menu'){if(EM.menu&&EM.menu!=='root')EM.menu='root';else if(EM.menu)EM.menu=null;else{EM.menu='root';EM.ctl=null;}emSay(EM.menu?'Menu do PFD aberto. A tecla virou Back.':'Menu fechado.');}
+  if(v==='menu'){EM.kp=null;if(EM.menu&&EM.menu!=='root')EM.menu='root';else if(EM.menu)EM.menu=null;else{EM.menu='root';EM.ctl=null;}emSay(EM.menu?'Menu do PFD aberto. A tecla virou Back.':'Menu fechado.');}
   if(v==='cdi'){var seq=['GPS1','VLOC1','VLOC2'];EM.cdi=seq[(seq.indexOf(EM.cdi)+1)%3];emSay('Tecla CDI: fonte '+EM.cdi.replace(/(\d)$/,' $1')+(EM.cdi==='GPS1'?' (magenta, curso automático).':' (verde, curso ajustado pelo piloto).'));}
   if(v==='full'){EM.full=!EM.full;if(EM.full)EM.flags.fullOn=true;else if(EM.flags.fullOn)EM.flags.fullBack=true;emSay(EM.full?'PFD em tela cheia. Os dois botões servem o PFD. A tecla virou MFD.':'Tela dividida de novo: PFD 60%, MFD 40%.');}
   if(v==='back'){if(EM.mmenu)EM.mmenu=false;else{var p=EM.prev;EM.prev=EM.page;EM.page=p;}emSay('Back: volta à tela anterior.');}
@@ -2438,7 +2472,9 @@ function emAct(a){
   if(v==='tstart'){EM.tRun=!EM.tRun;if(EM.tRun)EM.flags.timer=true;emSay(EM.tRun?'Cronômetro contando.':'Cronômetro parado.');}
   if(v==='treset'){EM.tSec=0;emSay('Cronômetro zerado.');}}
  else if(k==='m'){EM.menu=v;if(v==='ATT SYNC'){EM.att=!EM.att;EM.menu='root';emSay('ATT SYNC '+(EM.att?'ligado: maquete alinhada ao horizonte na atitude atual.':'desligado.'));}else emSay(v+'.');}
- else if(k==='t'){if(v==='restore'){EM.glide=EM.vr=EM.vy=false;emSay('Restore All Defaults: marcadores voltam ao padrão.');}else{EM[v]=!EM[v];emSay({glide:'Marcador Glide',vr:'Marcador VR',vy:'Marcador VY (65 kt) na fita',hsimap:'HSI Map',svt:'Synthetic Terrain',inh:'HTERRAIN INHIBIT: alertas de terreno inibidos',rp:'RP MODE: só alertas vermelhos',wind:'Campo de vento',topo:'Camada TOPO'}[v]+(EM[v]?' ligado.':' desligado.'));}}
+ else if(k==='v'){EM.kp=EM.kp===v?null:v;EM.kb='';emSay(EM.kp?'Valor de '+{glide:'Glide',vr:'VR',vy:'VY'}[v]+': digite no teclado e toque Enter, ou gire o botão interno esquerdo.':'Edição cancelada.');}
+ else if(k==='kp'){if(!EM.kp){}else if(v==='Cancel'){EM.kp=null;EM.kb='';emSay('Edição cancelada.');}else if(v==='⌫'){EM.kb=EM.kb.slice(0,-1);}else if(v==='Enter'){if(EM.kb!==''){var nv=clamp(+EM.kb,0,250);EM.spd[EM.kp]=nv;emSay({glide:'Glide',vr:'VR',vy:'VY'}[EM.kp]+' = '+nv+' kt'+(nv===0?' (em 0 o marcador não aparece).':(EM[EM.kp]?(Math.abs(nv-95)>27?'. Fora do trecho visível da fita a 95 kt: aparece quando a IAS se aproxima.':'.'):'. A tecla está desligada: ligue para ver o marcador.')));}EM.kp=null;EM.kb='';}else if(EM.kb.length<3){EM.kb=(EM.kb+v).replace(/^0+(?=\d)/,'');}}
+ else if(k==='t'){if(v==='restore'){EM.glide=true;EM.vr=EM.vy=false;EM.spd={glide:0,vr:0,vy:65};EM.kp=null;emSay('Restore All Defaults: Vy 65 kt, Vr e Glide 0 kt.');}else{EM[v]=!EM[v];emSay({glide:'Marcador Glide',vr:'Marcador VR',vy:'Marcador VY na fita',hsimap:'HSI Map',svt:'Synthetic Terrain',inh:'HTERRAIN INHIBIT: alertas de terreno inibidos',rp:'RP MODE: só alertas vermelhos',wind:'Campo de vento',topo:'Camada TOPO'}[v]+(EM[v]?' ligado.':' desligado.'));}}
  else if(k==='r'){EM.mins=v;emSay('Mínimos: '+v+'.');}
  else if(k==='p'){EM.prev=EM.page;EM.page=v;EM.mmenu=false;if(v==='terrain')EM.flags.terr=true;emSay('Página '+v+' aberta.');}
  else if(k==='pw'){EM.power=false;if(v==='off'){EM.on=false;emSay('Unidade desligada. Em voo, nunca: só se o procedimento mandar.');}else emSay('Desligamento cancelado.');}
@@ -2448,7 +2484,8 @@ function emBaroPush(){if(EM.std){EM.std=false;EM.baro=EM.preset!==1013?EM.preset
 function emKnob(side,part,dir){
  var pfd=side==='L'||EM.full;EM.last=Date.now();if(!EM.on)return;
  if(pfd){
-  if(part==='o'){EM.menu=null;EM.focus=(EM.focus+(dir>0?1:-1)+4)%4;EM.ctl=EFOC[EM.focus];emSay('Externo: barra localizadora em '+EFOC[EM.focus].toUpperCase()+'.');}
+  if(part==='o'){EM.menu=null;EM.kp=null;EM.focus=(EM.focus+(dir>0?1:-1)+4)%4;EM.ctl=EFOC[EM.focus];emSay('Externo: barra localizadora em '+EFOC[EM.focus].toUpperCase()+'.');}
+  else if(part==='i'&&EM.menu==='Airspeeds'&&EM.kp){var cv=EM.kb===''?EM.spd[EM.kp]:+EM.kb;EM.kb=String(clamp(cv+dir,0,250));emSay('Valor: '+EM.kb+' kt (Enter confirma).');}
   else if(part==='i'){var f=EFOC[EM.focus];if(!EM.ctl)EM.ctl=f;
    if(f==='hdg'){EM.bug=norm(EM.bug+dir)||360;emSay('HDG '+h3(EM.bug));}
    else if(f==='alt'){EM.sel=EM.sel===null?(dir>0?100*Math.round(emAlt()/100):-1100):clamp(EM.sel+dir*100,-1100,20000);if(EM.sel<-1000){EM.sel=null;emSay('Abaixo de −1.000 ft: altitude selecionada desligada (traços).');}else emSay('ALT '+fmt(EM.sel)+' ft');}
@@ -2470,7 +2507,8 @@ var EMT=[{t:'O controle informou QNH 1016: ajuste o BARO.',ok:function(){return 
  {t:'Ponha o PFD em tela cheia e volte para PFD + MFD.',ok:function(){return !!EM.flags.fullBack;}},
  {t:'Abra a página TERR no MFD (pelo botão direito ou pela Home).',ok:function(){return !!EM.flags.terr;}},
  {t:'Ligue a visão sintética (Menu → Terrain SVT).',ok:function(){return EM.svt;}},
- {t:'Ligue o marcador VY (Menu → Airspeeds).',ok:function(){return EM.vy;}}];
+ {t:'Ligue o marcador VY (Menu → Airspeeds).',ok:function(){return EM.vy;}},
+ {t:'Pela tabela do FLM, Vy = 60 kt nesta altitude: ajuste o valor de VY para 60 kt.',ok:function(){return EM.vy&&EM.spd.vy===60;}}];
 function emRender(){
  emDraw($('emS'));$('emMsg').textContent=EM.msg||'Toque em um campo ou tecla da tela, ou use os botões.';
  $('kRlab').textContent=EM.full?'Botão direito (PFD em Full)':'Botão direito (MFD)';
@@ -2493,7 +2531,7 @@ INIT.sistema=function(){
   {x:1040,y:425,t:'Slot SD inferior',d:'Bancos de dados. Não inserir nem retirar em voo; desligar antes.'},
   {x:100,y:640,t:'Botão duplo esquerdo',d:'Serve o PFD. Externo: barra localizadora HDG, ALT, CRS, BARO. Interno: valor. Push: sincroniza (Push Sync) ou alterna STD.'},
   {x:1000,y:640,t:'Botão duplo direito',d:'Serve o MFD. Externo: páginas MAP, TERR, CHRT. Interno: zoom. Com PFD em Full, serve o PFD.'},
-  {x:140,y:80,t:'Indicador de velocidade (Airspeed Indicator)',d:'Fita de IAS com TAS e GS abaixo. Faixa hachurada: VNE sem potência.',go:'velocidade'},
+  {x:140,y:80,t:'Indicador de velocidade (Airspeed Indicator)',d:'Fita de IAS com TAS e GS abaixo. Verde até a VNE, vermelho acima; marcador hachurado: VNE sem potência.',go:'velocidade'},
   {x:420,y:140,t:'Indicador de atitude (Attitude Indicator)',d:'O "giro horizonte": céu e solo virtuais, escala de inclinação, escala de arfagem, maquete e trapézio de derrapagem. É o nome usado pelo Pilot\'s Guide da Garmin.',go:'atitude'},
   {x:592,y:240,t:'Altímetro barométrico (Barometric Altimeter)',d:'Fita de altitude com número rolante, tendência e bug da altitude selecionada.',go:'altitude'},
   {x:628,y:172,t:'Indicador de razão vertical (VSI)',d:'Em arco no EC130 T2; número acima de ±300 fpm.',go:'altitude'},
@@ -2619,14 +2657,15 @@ velocidade:[
  {q:'A IAS é obtida de:',o:['Pressão total menos pressão estática, no ADC','GPS','Temperatura e altitude']},
  {q:'Por que a TAS é maior que a IAS em altitude?',o:['O ar é menos denso','O vento de cauda aumenta','O pitot congela']},
  {q:'O vetor magenta na fita de velocidade é:',o:['A IAS prevista em 6 s','A velocidade do vento','A VNE']},
- {q:'Número da velocidade amarelo significa:',o:['A tendência entra na faixa acima da VNE','A IAS já passou da VNE','Falha de temperatura']},
- {q:'Fundo do indicador de velocidade vermelho significa:',o:['A IAS passou da VNE','A tendência vai passar da VNE','O ADC falhou']},
+ {q:'Ponteiro da velocidade amarelo significa:',o:['A tendência entra na faixa acima da VNE','A IAS já passou da VNE','Falha de temperatura']},
+ {q:'Ponteiro da velocidade vermelho significa:',o:['A IAS passou da VNE','A tendência vai passar da VNE','O ADC falhou']},
  {q:'A VNE na fita do EC130 T2:',o:['É calculada com a altitude, conforme a placa de limitações','É fixa','Vem do GPS']},
  {q:'Aviso "air data input failure. VNE is uncorrected": o que fazer?',o:['Usar a placa de VNE','Ignorar em voo','Trocar a fonte do CDI']},
- {q:'A faixa vermelha com listras brancas (hachurada) na fita marca:',o:['A VNE sem potência (autorrotação), que muda com a altitude','A VNE com potência','A faixa de Vy']},
+ {q:'O marcador vermelho e branco hachurado na faixa de velocidade marca:',o:['A VNE sem potência (autorrotação), que muda com a altitude','A VNE com potência','A faixa de Vy']},
  {q:'No EC130 T2, a VNE com potência a 5.000 ft é:',o:['140 kt (155 − 3 × 5)','155 kt','125 kt'],e:'155 kt menos 3 kt por 1.000 ft. Sem potência: 110 kt.'},
  {q:'O marcador Vy no EC130 T2:',o:['Não é calculado: o piloto ajusta pela tabela do FLM','É calculado com a altitude, como a VNE','Não existe no TXi']},
- {q:'Depois de desligar e ligar, os marcadores Vy, Vr e Glide:',o:['Voltam aos valores da instalação','Ficam como o piloto deixou','Somem definitivamente']}],
+ {q:'Os valores dos marcadores Vy, Vr e Glide:',o:['Não ficam gravados no perfil do piloto','Ficam gravados no perfil do piloto','São calculados pela altitude']},
+ {q:'Valores padrão dos marcadores:',o:['Vy 65 kt; Vr e Glide 0 kt','Vy 0; Vr e Glide 65 kt','Todos calculados pela altitude']}],
 altitude:[
  {q:'Ajuste BARO maior que o QNH real faz o altímetro indicar:',o:['Mais alto do que a altitude real','Mais baixo do que a real','A altitude real']},
  {q:'PRESET serve para:',o:['Pré-selecionar o QNH do destino com STD ativo, sem mudar a leitura','Ajustar a altitude selecionada','Testar o altímetro']},
