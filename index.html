@@ -2725,6 +2725,8 @@ css.textContent=
 '.fsOn>.fsC>canvas,.fsOn>.fsC>img{width:100%!important;height:auto!important}'+
 '.fsOn .fsb{top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));font-size:14px;padding:9px 13px}'+
 'body.fsLock{overflow:hidden}'+
+'.fsExit{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:9998;font-size:13px;padding:9px 13px;top:auto}'+
+'.fsExit[hidden]{display:none}'+
 '@media print{.fsb{display:none}}';
 document.head.appendChild(css);
 
@@ -2744,21 +2746,24 @@ function label(btn,on){
 function nativeFs(){return document.fullscreenElement||document.webkitFullscreenElement||null;}
 
 function enter(box){
-  if(cur)leave();
+  if(cur)leave(false);
   var c=content(box);if(!c)return;
   var r=c.getBoundingClientRect();
   var ar=(r.width&&r.height)?r.width/r.height:1.6;
   box.style.setProperty('--ar',ar.toFixed(4));
   c.classList.add('fsC');box.classList.add('fsOn');document.body.classList.add('fsLock');
   cur=box;label(box._fsb,true);
-  var rq=box.requestFullscreen||box.webkitRequestFullscreen;
-  if(rq){
-    try{
-      var p=rq.call(box,{navigationUI:'hide'});
-      if(p&&p.then)p.then(lockLand).catch(function(){});
-      else lockLand();
-    }catch(e){}
-  }
+  if(!nativeFs()){
+    var de=document.documentElement,rq=de.requestFullscreen||de.webkitRequestFullscreen;
+    if(rq){
+      try{
+        var p=rq.call(de,{navigationUI:'hide'});
+        if(p&&p.then)p.then(lockLand).catch(function(){});
+        else lockLand();
+      }catch(e){}
+    }
+  }else lockLand();
+  syncExit();
   box._fsb.focus({preventScroll:true});
 }
 function lockLand(){
@@ -2768,31 +2773,48 @@ function lockLand(){
     screen.orientation.lock('landscape').catch(function(){});
   }
 }
-function leave(){
-  if(!cur)return;
+function leave(all){
+  if(cur){
   var box=cur;cur=null;
   var c=content(box);if(c)c.classList.remove('fsC');
   box.classList.remove('fsOn');document.body.classList.remove('fsLock');
   label(box._fsb,false);
-  if(nativeFs()){
+  box.scrollIntoView({block:'nearest'});
+  }
+  if(all&&nativeFs()){
     var ex=document.exitFullscreen||document.webkitExitFullscreen;
     try{var p=ex&&ex.call(document);if(p&&p.catch)p.catch(function(){});}catch(e){}
+    try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
   }
-  try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
-  box.scrollIntoView({block:'nearest'});
+  syncExit();
 }
-function onFsChange(){if(cur&&!nativeFs())leave();}
+/* botão flutuante: site inteiro em tela cheia, sem tela aberta */
+var exitBtn=document.createElement('button');
+exitBtn.type='button';exitBtn.className='fsb fsExit';exitBtn.hidden=true;
+exitBtn.innerHTML=IC_OFF+'<span>Sair da tela cheia</span>';
+exitBtn.setAttribute('aria-label','Sair da tela cheia');
+exitBtn.addEventListener('click',function(){leave(true);});
+document.body.appendChild(exitBtn);
+function syncExit(){exitBtn.hidden=!(nativeFs()&&!cur);}
+/* navegou para outro módulo com a tela aberta: fecha só a tela, o site segue em tela cheia */
+function gone(){
+  if(!cur)return;
+  var par=cur.parentElement;
+  if(!par||par.getClientRects().length===0)leave(false);
+}
+new MutationObserver(function(){gone();}).observe(document.body,{attributes:true,subtree:true,attributeFilter:['hidden','class','style']});
+function onFsChange(){if(cur&&!nativeFs())leave(false);syncExit();}
 document.addEventListener('fullscreenchange',onFsChange);
 document.addEventListener('webkitfullscreenchange',onFsChange);
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur)leave();});
-window.addEventListener('hashchange',function(){if(cur)leave();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur)leave(true);});
+window.addEventListener('hashchange',function(){setTimeout(gone,0);});
 
 var boxes=document.querySelectorAll('.bezel,.fig');
 for(var i=0;i<boxes.length;i++){
   (function(box){
     var b=document.createElement('button');
     b.type='button';b.className='fsb';label(b,false);
-    b.addEventListener('click',function(e){e.stopPropagation();if(cur===box)leave();else enter(box);});
+    b.addEventListener('click',function(e){e.stopPropagation();if(cur===box)leave(true);else enter(box);});
     box._fsb=b;box.appendChild(b);
   })(boxes[i]);
 }
