@@ -2707,6 +2707,96 @@ function boot(){
  window.addEventListener('hashchange',function(){var q=location.hash.slice(1).split('/');if(q[0]!==CUR.m||q[1]!==CUR.tab)go(q[0]||'inicio',q[1]||null,false);});}
 boot();
 })();
+
+/* Tela cheia: botão em toda tela (.bezel) e figura (.fig) */
+(function(){
+var css=document.createElement('style');
+css.textContent=
+'.fsb{position:absolute;top:8px;right:8px;z-index:5;display:inline-flex;align-items:center;gap:6px;'+
+'background:rgba(8,14,22,.78);color:#E6EEF6;border:1px solid rgba(255,255,255,.22);border-radius:10px;'+
+'padding:6px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer;backdrop-filter:blur(4px)}'+
+'.fsb:hover,.fsb:focus-visible{background:rgba(20,34,50,.92);border-color:rgba(255,255,255,.5);outline:none}'+
+'.fsb svg{width:14px;height:14px;display:block}'+
+'.fig{position:relative}'+
+'.fsOn{position:fixed!important;inset:0!important;z-index:9999!important;margin:0!important;max-width:none!important;'+
+'width:100vw!important;height:100vh!important;height:100dvh!important;border-radius:0!important;border:0!important;'+
+'background:#000!important;display:flex!important;align-items:center;justify-content:center;padding:12px!important;box-sizing:border-box}'+
+'.fsOn>.fsC{width:min(calc(100vw - 24px),calc((100dvh - 24px) * var(--ar)))!important;height:auto!important;flex:none}'+
+'.fsOn>.fsC>canvas,.fsOn>.fsC>img{width:100%!important;height:auto!important}'+
+'.fsOn .fsb{top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));font-size:14px;padding:9px 13px}'+
+'body.fsLock{overflow:hidden}'+
+'@media print{.fsb{display:none}}';
+document.head.appendChild(css);
+
+var IC_ON='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg>';
+var IC_OFF='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/></svg>';
+var cur=null;
+
+function content(box){
+  for(var i=0;i<box.children.length;i++){var c=box.children[i];if(!c.classList.contains('fsb'))return c;}
+  return null;
+}
+function label(btn,on){
+  btn.innerHTML=(on?IC_OFF:IC_ON)+'<span>'+(on?'Sair':'Tela cheia')+'</span>';
+  btn.setAttribute('aria-label',on?'Sair da tela cheia':'Abrir em tela cheia');
+  btn.setAttribute('aria-pressed',on?'true':'false');
+}
+function nativeFs(){return document.fullscreenElement||document.webkitFullscreenElement||null;}
+
+function enter(box){
+  if(cur)leave();
+  var c=content(box);if(!c)return;
+  var r=c.getBoundingClientRect();
+  var ar=(r.width&&r.height)?r.width/r.height:1.6;
+  box.style.setProperty('--ar',ar.toFixed(4));
+  c.classList.add('fsC');box.classList.add('fsOn');document.body.classList.add('fsLock');
+  cur=box;label(box._fsb,true);
+  var rq=box.requestFullscreen||box.webkitRequestFullscreen;
+  if(rq){
+    try{
+      var p=rq.call(box,{navigationUI:'hide'});
+      if(p&&p.then)p.then(lockLand).catch(function(){});
+      else lockLand();
+    }catch(e){}
+  }
+  box._fsb.focus({preventScroll:true});
+}
+function lockLand(){
+  var c=cur&&content(cur);if(!c)return;
+  var ar=parseFloat(cur.style.getPropertyValue('--ar'))||1;
+  if(ar>1.1&&screen.orientation&&screen.orientation.lock&&window.innerWidth<820){
+    screen.orientation.lock('landscape').catch(function(){});
+  }
+}
+function leave(){
+  if(!cur)return;
+  var box=cur;cur=null;
+  var c=content(box);if(c)c.classList.remove('fsC');
+  box.classList.remove('fsOn');document.body.classList.remove('fsLock');
+  label(box._fsb,false);
+  if(nativeFs()){
+    var ex=document.exitFullscreen||document.webkitExitFullscreen;
+    try{var p=ex&&ex.call(document);if(p&&p.catch)p.catch(function(){});}catch(e){}
+  }
+  try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
+  box.scrollIntoView({block:'nearest'});
+}
+function onFsChange(){if(cur&&!nativeFs())leave();}
+document.addEventListener('fullscreenchange',onFsChange);
+document.addEventListener('webkitfullscreenchange',onFsChange);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur)leave();});
+window.addEventListener('hashchange',function(){if(cur)leave();});
+
+var boxes=document.querySelectorAll('.bezel,.fig');
+for(var i=0;i<boxes.length;i++){
+  (function(box){
+    var b=document.createElement('button');
+    b.type='button';b.className='fsb';label(b,false);
+    b.addEventListener('click',function(e){e.stopPropagation();if(cur===box)leave();else enter(box);});
+    box._fsb=b;box.appendChild(b);
+  })(boxes[i]);
+}
+})();
 </script>
 
 </body>
