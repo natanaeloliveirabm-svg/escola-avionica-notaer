@@ -14,4 +14,4 @@ O site é um único arquivo: `index.html`. Abra no navegador ou publique em qual
 
 ## Aviso
 
-Material didático. Desenhos e simuladores não reproduzem a tela real nem substituem o FLM, o suplemento SUP 55-8, o Pilot's Guide da Garmin e o treinamento em voo. Textos em paráfrase, baseados no Garmin G500(H)/G600/G700 TXi Pilot's Guide (190-01717-10 Rev. H) e no manual de treinamento do H130 TXi. Esta versão pública não contém figuras dos manuais.
+Material didático. Desenhos e simuladores não reproduzem a tela real nem substituem o FLM, o suplemento SUP 55-8, o Pilot's Guide da Garmin e o treinamento em voo. Textos em paráfrase, baseados no Garmin G500(H)/G600/G700 TXi Pilot's Guide (190-01717-10 Rev. H) e no manual de treinamento do H130 TXi. A imagem do painel é do material de instrução do NOTAER.
