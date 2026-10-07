@@ -483,7 +483,7 @@ footer{max-width:1320px;margin:36px auto 0;color:var(--muted);font-size:13px;bor
 <div class="ctrl">
 <div><div class="label" style="margin-bottom:8px">Cenários</div>
 <div class="btns" id="aScen">
-<button type="button" data-s="nivel">Nivelado</button><button type="button" data-s="padrao">Curva padrão</button><button type="button" data-s="glis">Glissada</button><button type="button" data-s="derr">Derrapagem</button><button type="button" data-s="lenta">Curva lenta (TAS 50)</button><button type="button" data-s="subida">Subida</button><button type="button" data-s="extb">Nariz baixo extremo</button><button type="button" data-s="exta">Nariz alto extremo</button>
+<button type="button" data-s="nivel">Nivelado</button><button type="button" data-s="fpm">FPM: nariz alto, descendo</button><button type="button" data-s="deriva">FPM: vento lateral</button><button type="button" data-s="pair">FPM: GS abaixo de 30 kt</button><button type="button" data-s="padrao">Curva padrão</button><button type="button" data-s="glis">Glissada</button><button type="button" data-s="derr">Derrapagem</button><button type="button" data-s="lenta">Curva lenta (TAS 50)</button><button type="button" data-s="subida">Subida</button><button type="button" data-s="extb">Nariz baixo extremo</button><button type="button" data-s="exta">Nariz alto extremo</button>
 </div></div>
 <div class="row"><span class="label">Ponteiro</span><div class="btns" id="aPtr"><button type="button" data-v="fixed">Fixo</button><button type="button" data-v="sky">De céu</button></div><span></span></div>
 <div class="row"><span class="label">Visão sintética</span><div class="btns"><button type="button" id="aSvt" aria-pressed="false">SVT</button></div><span></span></div>
@@ -1395,7 +1395,7 @@ function adi(o){
   if(d%maj===0){lw=o.pw;lab=true;}else if(d%5===0){lw=o.pw*0.5;}else if(Math.abs(d)<=20){lw=o.pw*(o.svt?0.3:0.2);}else continue;
   s+='<line x1="'+(cx-lw).toFixed(1)+'" x2="'+(cx+lw).toFixed(1)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#FFF" stroke-width="1.6"/>';
   if(lab)s+=tx(cx-lw-6,y+5,Math.abs(d),13,'#FFF','end')+tx(cx+lw+6,y+5,Math.abs(d),13);}
- if(o.fpm){var fx=cx+o.dx*K,fy=cy-o.gam*K;s+='<g stroke="#3BD16F" stroke-width="3.5" fill="none"><circle cx="'+fx.toFixed(1)+'" cy="'+fy.toFixed(1)+'" r="9"/><line x1="'+fx.toFixed(1)+'" y1="'+(fy-9).toFixed(1)+'" x2="'+fx.toFixed(1)+'" y2="'+(fy-21).toFixed(1)+'"/><line x1="'+(fx-20).toFixed(1)+'" y1="'+fy.toFixed(1)+'" x2="'+(fx-9).toFixed(1)+'" y2="'+fy.toFixed(1)+'"/><line x1="'+(fx+9).toFixed(1)+'" y1="'+fy.toFixed(1)+'" x2="'+(fx+20).toFixed(1)+'" y2="'+fy.toFixed(1)+'"/></g>';}
+ var fpmS=''; if(o.fpm){var fx=cx+o.dx*K,fy=cy-o.gam*K;fpmS+='<g stroke="#3BD16F" stroke-width="3.5" fill="none"><circle cx="'+fx.toFixed(1)+'" cy="'+fy.toFixed(1)+'" r="9"/><line x1="'+fx.toFixed(1)+'" y1="'+(fy-9).toFixed(1)+'" x2="'+fx.toFixed(1)+'" y2="'+(fy-21).toFixed(1)+'"/><line x1="'+(fx-20).toFixed(1)+'" y1="'+fy.toFixed(1)+'" x2="'+(fx-9).toFixed(1)+'" y2="'+fy.toFixed(1)+'"/><line x1="'+(fx+9).toFixed(1)+'" y1="'+fy.toFixed(1)+'" x2="'+(fx+20).toFixed(1)+'" y2="'+fy.toFixed(1)+'"/></g>';}
  s+='</g>';
  var rot=' transform="rotate('+(-o.bank)+' '+cx+' '+cy+')"';
  s+='<g'+(o.ptr==='sky'?'':rot)+' stroke="#FFF" stroke-width="2.2" fill="none">';
@@ -1411,6 +1411,7 @@ function adi(o){
  if(!o.noBall)s+='<polygon points="'+(cx-13+bo).toFixed(1)+','+(cy-R+19)+' '+(cx+13+bo).toFixed(1)+','+(cy-R+19)+' '+(cx+17+bo).toFixed(1)+','+(cy-R+26)+' '+(cx-17+bo).toFixed(1)+','+(cy-R+26)+'" fill="#FFF"/>';
  s+='</g>';
  s+='<path d="M'+(cx-82)+' '+cy+' H'+(cx-28)+' L'+(cx-15)+' '+(cy+13)+' H'+(cx+15)+' L'+(cx+28)+' '+cy+' H'+(cx+82)+'" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-opacity="0.5"/><path d="M'+(cx-82)+' '+cy+' H'+(cx-28)+' L'+(cx-15)+' '+(cy+13)+' H'+(cx+15)+' L'+(cx+28)+' '+cy+' H'+(cx+82)+'" fill="none" stroke="#F2D21B" stroke-width="6" stroke-linejoin="round"/><circle cx="'+cx+'" cy="'+cy+'" r="4" fill="#F2D21B"/>';
+ if(fpmS)s+='<g transform="rotate('+(-o.bank)+' '+cx+' '+cy+') translate(0 '+(o.pitch*K).toFixed(1)+')">'+fpmS.replace('stroke-width="3.5"','stroke-width="3.5" stroke-linecap="round"')+'</g>';
  return s+'</g>';}
 
 /* ---------- Fita de velocidade ---------- */
@@ -1673,11 +1674,11 @@ function stdChartDraw(){
  s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#5CC8E8" stroke-width="3"/>';
  [80,100,120].forEach(function(v){var b=stdBank(v);s+='<circle cx="'+X(v)+'" cy="'+Y(b)+'" r="4" fill="#5CC8E8"/>'+tx(X(v),Y(b)-10,dec(b,0)+'°',12,'#E7EDF4','middle');});
  $('stdChart').innerHTML=s;}
-var A={b:20,q:0,p:0,d:0,c:0,tas:100,ptr:'fixed',svt:false};
+var A={b:10,q:3,p:0,d:5,c:-3,tas:90,ptr:'fixed',svt:true};
 function rA(){
  var b=A.b,q=A.q,dir=b>=0?1:-1,std=stdBank(A.tas);
  $('aBank').value=b;$('aPitch').value=q;$('aDrift').value=A.d;$('aGam').value=A.c;$('aTas').value=A.tas;
- $('adiA').innerHTML=adi({id:'aA',w:400,h:320,cx:200,cy:160,K:3.6,R:122,pw:38,bank:b,pitch:q,ball:A.p*dir,fpm:A.svt,dx:A.d,gam:A.c,ptr:A.ptr,std:std,svt:A.svt,sky:A.svt?skyline(-2,0,0,2600,{fov:44}):null,hdg:0});
+ $('adiA').innerHTML=adi({id:'aA',w:400,h:320,cx:200,cy:160,K:3.6,R:122,pw:38,bank:b,pitch:q,ball:A.p*dir,fpm:A.svt&&A.tas>=30,dx:A.d,gam:A.c,ptr:A.ptr,std:std,svt:A.svt,sky:A.svt?skyline(-2,0,0,2600,{fov:44}):null,hdg:0});
  $('aBankO').textContent=lat(b);$('aPitchO').textContent=sgn(q,'0°');$('aDriftO').textContent=lat(A.d);$('aGamO').textContent=sgn(A.c,'nível');$('aTasO').textContent=A.tas+' kt';
  pressGroup('#aPedal',A.p,'p');pressGroup('#aPtr',A.ptr,'v');$('aSvt').setAttribute('aria-pressed',String(A.svt));
  $('aTags').innerHTML=A.ptr==='fixed'?'<span class="tag"><b>Fixos</b> maquete, ponteiro, trapézio</span><span class="tag"><b>Giram</b> horizonte, escala e zero</span>':'<span class="tag"><b>Fixos</b> maquete, escala e zero</span><span class="tag"><b>Giram</b> horizonte, ponteiro e trapézio</span>';
@@ -1687,9 +1688,9 @@ function rA(){
  if(q<=-30||q>=50)m+=' Chevrons vermelhos apontando para o horizonte.';if(A.svt)m+=' Com SVT a escala expande: marcas maiores a cada 5°.';$('aM2').textContent=m;
  $('aM3').textContent=A.p===0?' Trapézio sob o ponteiro: voo coordenado.':(b===0?' Fora do centro sem inclinação: pedal para o lado do trapézio.':(A.p===1?' Para dentro da curva: glissada, falta pedal do lado da curva.':' Para fora da curva: derrapagem, sobra pedal.'));
  var t=std===null?' TAS '+A.tas+' kt: abaixo de 60 kt os marcadores de curva padrão não aparecem.':' Marcadores em '+dec(std,0)+'° (curva padrão a '+A.tas+' kt).'+(Math.abs(Math.abs(b)-std)<1.5?' A inclinação atual coincide: 3°/s.':' Razão atual ≈ '+dec(Math.abs(turnRate(b,A.tas)))+'°/s.');
- if(A.svt){var f=[];if(A.d!==0)f.push('deriva '+Math.abs(A.d)+'° para a '+side(A.d));var df=A.c-q;if(df!==0)f.push(Math.abs(df)+'° '+(df>0?'acima':'abaixo')+' da maquete');t+=' FPM: '+(f.length?f.join('; '):'sobre a maquete')+'.';}else t+=' FPM: só com SVT ligado.';
+ if(A.svt&&A.tas<30)t+=' FPM: some com GS abaixo de 30 kt (aqui, sem vento, GS = TAS).';else if(A.svt){var f=[];if(A.d!==0)f.push('deriva '+Math.abs(A.d)+'° para a '+side(A.d));var df=A.c-q;if(df!==0)f.push(Math.abs(df)+'° '+(df>0?'acima':'abaixo')+' da maquete');t+=' FPM (círculo verde): '+(f.length?f.join('; '):'sobre a maquete')+(A.c<0?': o helicóptero está descendo':(A.c>0?': o helicóptero está subindo':': trajetória nivelada'))+(A.d!==0?', desviado pelo vento':'')+'.';}else t+=' FPM: só aparece com SVT ligado (toque em SVT).';
  $('aM4').textContent=t;}
-var AS={nivel:[0,0,0,0,0,100],padrao:[15,0,0,0,0,100],glis:[20,0,1,0,0,100],derr:[20,0,-1,0,0,100],lenta:[10,0,0,0,0,50],subida:[0,6,0,0,4,80],extb:[15,-36,0,0,-30,110],exta:[-10,55,0,0,10,60]};
+var AS={fpm:[0,4,0,0,-4,80,'fixed',true],deriva:[0,2,0,8,0,90,'fixed',true],pair:[0,3,0,0,0,20,'fixed',true],nivel:[0,0,0,0,0,100],padrao:[15,0,0,0,0,100],glis:[20,0,1,0,0,100],derr:[20,0,-1,0,0,100],lenta:[10,0,0,0,0,50],subida:[0,6,0,0,4,80],extb:[15,-36,0,0,-30,110],exta:[-10,55,0,0,10,60]};
 function setA(v){A.b=v[0];A.q=v[1];A.p=v[2];A.d=v[3];A.c=v[4];A.tas=v[5];if(v[6])A.ptr=v[6];if(v[7]!==undefined)A.svt=v[7];rA();}
 INIT.atitude=function(){
  stdChartDraw();
